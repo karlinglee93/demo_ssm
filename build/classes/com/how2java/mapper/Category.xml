@@ -19,7 +19,15 @@
 	<update id="update" parameterType="Category">
 		update category_ set name=#{name} where id=#{id}
 	</update>
+	
 	<select id="list" resultType="Category">
 		select * from category_
+		<if test="start!=null and count!=null">
+			limit #{start},#{count}
+		</if>
 	</select>
+	
+	<select id="total" resultType="int">
+            select count(*) from category_
+    </select>
 </mapper>
